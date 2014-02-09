@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "ContactUs";
+}
+<div class="line-hor"></div>
+<div class="box">
+    <div class="border-right">
+        <div class="border-left">
+            <div class="inner">
+                <h3>Our <span>Contact</span></h3>
+                <div class="address">
+                    <div class="fleft">
+                        <span>Zip Code:</span>5400<br />
+                        <span>Country:</span>Pakistan<br />
+                        <span>Telephone:</span>+92 300 400030001<br />
+                        <span>Fax:</span>+354 5635610
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <h3>Contact <span>Form</span></h3>
+    <form id="contacts-form"  accept-charset="UTF-8" role="form" action="/ContactUs/saveContactUs" method="post" enctype="multipart/form-data">
+        <fieldset>
+
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div class="field">
+                <label>Your Name:</label>
+                <input type="text" value="" id="name" name="name"/>
+            </div>
+            <div class="field">
+                <label>Your E-mail:</label>
+                <input type="text" value="" id="email" name="email"/>
+            </div>            
+            <div class="field">
+                <label>Your Message:</label>
+                <textarea cols="1" rows="1" id="description" name="description"></textarea>
+            </div>
+            <div class="wrapper"><input type="submit" class="link2"> <span><span>Send Your Message</span> </span></div>
+        </fieldset>
+    </form>
+</div>

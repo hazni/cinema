@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Movies";
+}
+
+<div class="content">
+    <h3>Movies <span>Now Showing</span></h3>
+    <ul class="movies">
+        <li>
+            <h4>Toy Story 3</h4>
+            <img src="~/Content/images/1page-img2.jpg" alt="" />
+            <p>Egetnunc nunc mattitor curabiturpiscipis nec ac hac pellus sem intesque sociis. Metusmetuer hendimentesque diam at orbi sempor.</p>
+            <div class="wrapper"><a href="#" class="link2" data-toggle="modal" data-target="#BookingModal"><span><span>Book</span></span></a></div>
+        </li>
+        <li>
+            <h4>Prince of Percia: Sands of Time</h4>
+            <img src="~/Content/images/1page-img3.jpg" alt="" />
+            <p>Dolorem malesuada anterdum quis vitae. Cursustellentesque enim justo vestasse vitae trices phasellus leo sociis leo magnisl. Malestibulusnatis. </p>
+            <div class="wrapper">
+           <div class="wrapper"><a href="#" class="link2" data-toggle="modal" data-target="#BookingModal"><span><span>Book</span></span></a></div>
+        </li>
+        <li class="last">
+            <h4>The Twilight Saga: Eclipse</h4>
+            <img src="~/Content/images/1page-img4.jpg" alt="" />
+            <p>Quisque felit odio ut nunc convallis semper sente ris feugiat. Odionam leo phasellentum id vitantesque nunc tor quisque a maecenatibus pellus.</p>
+            <div class="wrapper"><a href="#"  class="link2" data-toggle="modal" data-target="#BookingModal"><span><span>Book</span></span></a></div>
+        </li>
+        <li class="clear">&nbsp;</li>
+    </ul>
+</div>
+
+@model CinemaWorld.Models.ViewModel.BookingMetadata
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+
+
+@*<BOOKING MODAL >*@
+<div class="modal fade" id="BookingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Booking </h4>
+                </div>
+                <div class="modal-body">
+
+                    
+                    <form accept-charset="UTF-8" role="form" action="/Booking/saveBooking" method="post" enctype="multipart/form-data">
+
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <fieldset>
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => model.tickets, new { id = "tickets", type = "text", placeholder = "Enter Tickets", @class = "form-control", autofocus = "" })
+                                @Html.ValidationMessageFor(model => model.tickets)
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.date, new { id = "date", type="datetime-local", placeholder = "Enter Valid DateTime", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.date)    
+                                    </div>                         
+                           </div>
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="Book" />
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
